@@ -1,0 +1,14 @@
+node_modules
+
+.npmignore
+.gitignore
+*.tgz
+
+.editorconfig
+.eslintignore
+.eslintrc
+
+.travis.yml
+.npmrc*
+
+spec
