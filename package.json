@@ -1,7 +1,7 @@
 {
   "name": "@d2l/node-superagent-oauth-body-hash",
-  "version": "0.1.0",
-  "description": "",
+  "version": "0.1.1",
+  "description": "A superagent plugin to sign requests using OAuth 1.0a and including body hash",
   "main": "lib/index.js",
   "directories": {
     "test": "test"
@@ -14,8 +14,8 @@
   "author": "D2L Corporation",
   "license": "Apache-2.0",
   "devDependencies": {
-    "eslint": "2.5.0",
-    "eslint-config-brightspace": "0.2.0",
+    "eslint": "^2.5.1",
+    "eslint-config-brightspace": "^0.2.0",
     "express": "4.13.4",
     "istanbul": "0.4.0",
     "mocha": "2.4.5",

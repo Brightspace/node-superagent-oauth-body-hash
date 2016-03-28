@@ -2,7 +2,7 @@
 
 const	assert = require('assert');
 const	request = require('superagent');
-const	server = require('./support/server');
+require('./support/server');
 const	config = require('./support/config');
 const rewire = require('rewire');
 const	oauthBodyHashPlugin = rewire('../lib');
@@ -24,17 +24,17 @@ describe('superagent-oauth-body-hash', function() {
 				consumerSecret: 'mySecret'
 			})
 			.end((err, res) => {
-    		assert(!err);
-		    assert.equal(res.headers['authorization'], [
-					`OAuth oauth_version="1.0"`,
+				assert(!err);
+				assert.equal(res.headers['authorization'], [
+					'OAuth oauth_version="1.0"',
 					`oauth_nonce="${nonce}"`,
 					`oauth_timestamp="${timestamp}"`,
 					`oauth_consumer_key="${consumerKey}"`,
-					`oauth_signature_method="HMAC-SHA1"`,
-					`oauth_signature="F6GxGy%2BJBkjPZxrRdOhUgzHH6rU%3D"`
+					'oauth_signature_method="HMAC-SHA1"',
+					'oauth_signature="F6GxGy%2BJBkjPZxrRdOhUgzHH6rU%3D"'
 				].join(','));
 				done();
-		  });
+			});
 	});
 
 	it('signs a request with body hash', function(done) {
@@ -50,18 +50,18 @@ describe('superagent-oauth-body-hash', function() {
 				'sensitiveData': 'My top secret information'
 			})
 			.end((err, res) => {
-    		assert(!err);
-		    assert.equal(res.headers['authorization'], [
-					`OAuth oauth_version="1.0"`,
+				assert(!err);
+				assert.equal(res.headers['authorization'], [
+					'OAuth oauth_version="1.0"',
 					`oauth_nonce="${nonce}"`,
 					`oauth_timestamp="${timestamp}"`,
 					`oauth_consumer_key="${consumerKey}"`,
-					`oauth_signature_method="HMAC-SHA1"`,
-					`oauth_body_hash="mET4HhQI9uy5MhN9M77Xz9z1GKM%3D"`,
-					`oauth_signature="5VpQ0WxMghpAcA8Z4krWSYMtKHI%3D"`
+					'oauth_signature_method="HMAC-SHA1"',
+					'oauth_body_hash="mET4HhQI9uy5MhN9M77Xz9z1GKM%3D"',
+					'oauth_signature="5VpQ0WxMghpAcA8Z4krWSYMtKHI%3D"'
 				].join(','));
 				done();
-		  });
+			});
 	});
 
 	it('does not break standard superagent behaviour', function(done) {
@@ -69,9 +69,9 @@ describe('superagent-oauth-body-hash', function() {
 			.get(`http://localhost:${config.testPort}/echo`)
 			.use(oauthBodyHashPlugin)
 			.end((err, res) => {
-    		assert(!err);
-		    assert(!res.headers['authorization']);
+				assert(!err);
+				assert(!res.headers['authorization']);
 				done();
-		  });
+			});
 	});
 });
