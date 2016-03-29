@@ -37,7 +37,7 @@ describe('superagent-oauth-body-hash', function() {
 			});
 	});
 
-	it('signs a request with body hash', function(done) {
+	it('signs a request and hashes a JSON body', function(done) {
 		request
 			.post(`http://localhost:${config.testPort}/echo?hello=post`)
 			.use(oauthBodyHashPlugin)
@@ -57,8 +57,33 @@ describe('superagent-oauth-body-hash', function() {
 					`oauth_timestamp="${timestamp}"`,
 					`oauth_consumer_key="${consumerKey}"`,
 					'oauth_signature_method="HMAC-SHA1"',
-					'oauth_body_hash="mET4HhQI9uy5MhN9M77Xz9z1GKM%3D"',
-					'oauth_signature="5VpQ0WxMghpAcA8Z4krWSYMtKHI%3D"'
+					'oauth_body_hash="yAy1RHxuDkxeJiM4JnwtGgUhI6Y%3D"',
+					'oauth_signature="B5ZTSuNToV0j%2FHQDRN1Sk6er0M4%3D"'
+				].join(','));
+				done();
+			});
+	});
+
+	it('signs a request and hashes a string body', function(done) {
+		request
+			.post(`http://localhost:${config.testPort}/echo?hello=post`)
+			.use(oauthBodyHashPlugin)
+			.sign({
+				consumerKey: consumerKey,
+				consumerSecret: 'mySecret'
+			})
+			.hashBody()
+			.send('{\"sensitiveData\":\"My top secret information\"}')
+			.end((err, res) => {
+				assert(!err);
+				assert.equal(res.headers['authorization'], [
+					'OAuth oauth_version="1.0"',
+					`oauth_nonce="${nonce}"`,
+					`oauth_timestamp="${timestamp}"`,
+					`oauth_consumer_key="${consumerKey}"`,
+					'oauth_signature_method="HMAC-SHA1"',
+					'oauth_body_hash="yAy1RHxuDkxeJiM4JnwtGgUhI6Y%3D"',
+					'oauth_signature="B5ZTSuNToV0j%2FHQDRN1Sk6er0M4%3D"'
 				].join(','));
 				done();
 			});

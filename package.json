@@ -1,6 +1,6 @@
 {
   "name": "@d2l/node-superagent-oauth-body-hash",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "A superagent plugin to sign requests using OAuth 1.0a and including body hash",
   "main": "lib/index.js",
   "directories": {
