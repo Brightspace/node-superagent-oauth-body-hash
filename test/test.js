@@ -10,7 +10,8 @@ const sinon = require('sinon');
 
 describe('superagent-oauth-body-hash', function() {
 	const consumerKey = 'myKey';
-	const timestamp = 1448755200;
+	const timestamp = 1459883480871;
+  const expectedTimestampInSeconds = 1459883480;
 	const nonce = '89dc817d-3295-42ad-8e8e-db2499331202';
 	sinon.useFakeTimers().tick(timestamp);
 	oauthBodyHashPlugin.__get__('uuid').v4 = () => nonce;
@@ -28,10 +29,10 @@ describe('superagent-oauth-body-hash', function() {
 				assert.equal(res.headers['authorization'], [
 					'OAuth oauth_version="1.0"',
 					`oauth_nonce="${nonce}"`,
-					`oauth_timestamp="${timestamp}"`,
+					`oauth_timestamp="${expectedTimestampInSeconds}"`,
 					`oauth_consumer_key="${consumerKey}"`,
 					'oauth_signature_method="HMAC-SHA1"',
-					'oauth_signature="F6GxGy%2BJBkjPZxrRdOhUgzHH6rU%3D"'
+					'oauth_signature="2J41A2f5jyk5lZQOp8BqBDP3aio%3D"'
 				].join(','));
 				done();
 			});
@@ -54,11 +55,11 @@ describe('superagent-oauth-body-hash', function() {
 				assert.equal(res.headers['authorization'], [
 					'OAuth oauth_version="1.0"',
 					`oauth_nonce="${nonce}"`,
-					`oauth_timestamp="${timestamp}"`,
+					`oauth_timestamp="${expectedTimestampInSeconds}"`,
 					`oauth_consumer_key="${consumerKey}"`,
 					'oauth_signature_method="HMAC-SHA1"',
 					'oauth_body_hash="yAy1RHxuDkxeJiM4JnwtGgUhI6Y%3D"',
-					'oauth_signature="B5ZTSuNToV0j%2FHQDRN1Sk6er0M4%3D"'
+					'oauth_signature="TQfU6YuWeof26sbd1MA2uf5DMvo%3D"'
 				].join(','));
 				done();
 			});
@@ -79,11 +80,11 @@ describe('superagent-oauth-body-hash', function() {
 				assert.equal(res.headers['authorization'], [
 					'OAuth oauth_version="1.0"',
 					`oauth_nonce="${nonce}"`,
-					`oauth_timestamp="${timestamp}"`,
+					`oauth_timestamp="${expectedTimestampInSeconds}"`,
 					`oauth_consumer_key="${consumerKey}"`,
 					'oauth_signature_method="HMAC-SHA1"',
 					'oauth_body_hash="yAy1RHxuDkxeJiM4JnwtGgUhI6Y%3D"',
-					'oauth_signature="B5ZTSuNToV0j%2FHQDRN1Sk6er0M4%3D"'
+					'oauth_signature="TQfU6YuWeof26sbd1MA2uf5DMvo%3D"'
 				].join(','));
 				done();
 			});
