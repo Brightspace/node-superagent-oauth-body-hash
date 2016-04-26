@@ -11,6 +11,10 @@
     "test": "istanbul cover -R ./node_modules/mocha/bin/_mocha -- --recursive ./test",
     "check-style": "eslint ."
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Brightspace/node-superagent-oauth-body-hash"
+  },
   "author": "D2L Corporation",
   "license": "Apache-2.0",
   "devDependencies": {
