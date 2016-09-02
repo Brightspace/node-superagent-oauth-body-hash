@@ -7,7 +7,7 @@ a so-called “body hash” as defined in "OAuth Request Body Hash" (https://oau
 
 ```javascript
 const request = require('superagent');
-const oauthBodyHashPlugin = require('node-superagent-oauth-body-hash');
+const oauthBodyHashPlugin = require('@d2l/node-superagent-oauth-body-hash');
 
 request
 	.post('http://localhost:8090/echo?hello=post')
