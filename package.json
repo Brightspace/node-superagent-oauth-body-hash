@@ -25,7 +25,7 @@
     "mocha": "2.4.5",
     "rewire": "2.5.1",
     "sinon": "1.17.3",
-    "superagent": "1.8.3"
+    "superagent": "5.3.1"
   },
   "dependencies": {
     "crypto-js": "3.1.6",
