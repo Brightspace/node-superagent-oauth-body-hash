@@ -6,7 +6,7 @@ on:
       - master
 jobs:
   tests:
-    runs-on: [self-hosted, Linux, AWS]
+    runs-on: [ubuntu-latest]
     timeout-minutes: 5
     steps:
       - name: Checkout code
